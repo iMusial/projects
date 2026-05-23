@@ -1,4 +1,3 @@
-#Parses HTTP responses for patterns that expose usernames in a web login form via HTTP POST forms
 import requests
 print("Author: K4T")
 
