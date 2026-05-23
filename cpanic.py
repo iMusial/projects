@@ -50,6 +50,8 @@ def nmap():
 sysUsername = os.environ.get("USER")
 while True:
     userBlob = input((sysUsername)+">")
+    if userBlob == "exit" or userBlob == "quit":
+        exit()
 #clean up extra whitespace inbetween words in the user's input, then create a list using the first index as a command and the rest as args
     clean = userBlob.split()
     print("is this a list " + str(clean))
