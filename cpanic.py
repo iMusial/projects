@@ -6,19 +6,6 @@ from pydoc import pager
 
 print("starting cpanic")
 
-#dependency checks
-#Built to be modular in a way that if a new dependency is added, it can just be added to this list
-dependencies=["requests", "os"]
-
-for dep in dependencies:
-    try:
-        importlib.import_module(dep)
-    except ImportError:
-        raise SystemExit(
-                "Missing dependency: " + str(dep) + "\n"
-                "Suggestion: pip install " + str(dep)
-            )
-
 #define functions
 
 def help():
