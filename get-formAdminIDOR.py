@@ -1,5 +1,5 @@
 import requests
-print("Author: K4T")
+print("Author: iMusial")
 
 target = str(input("Host/victim IP address: "))
 phpCookie = input("PHP Cookie: ")
