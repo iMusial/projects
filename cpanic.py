@@ -11,30 +11,27 @@ print("starting cpanic")
 def help():
     print("cpanic help page:\n")
     #scan / netmap
-    print("scan\nScans for links on the connected machine and adds them to the NetMap\nlimited functionality, just adds an IP to your NetMap for now")
+    print("scan\nadds an IP to your NetMap, issues an ICMP echo ping")
     #connect
-    print("connect\nSets a target IP and connects to the NetMap if not already added, sends an ICMP ping and if a reply is received, the 'connection' is set")
-    #probe
-    print("probe\nCommon port scanning, not nearly as good as nmap. Will probably be an nmap wrapper soon though.")
+    print("\nconnect\nSets a target IP and connects to the NetMap if not already added")                                                                                  #probe                                                                             print("\nprobe\nCommon port scanning")
     #disconnect
-    print("disconnect\nunsets current target from an earlier 'connect' command")
+    print("\ndisconnect\nunsets current target from an earlier 'connect' command")
     #analyze
-    print("analyze\nscans all 65,536 ports, gives detailed information on stateful policy behavior, NAT and routing, firewall vendor, model, and version number, rate limits, response verbosity, and presence/behavior of DPI/SSL inspection")
+    print("\nanalyze\nscans all 65,536 ports and service versions, best used before analyze")
     #solve
-    print("solve\nrequires analyze to be run first, recommends an attack vector by checking service versions for CVEs, and other misconfigurations like anonymous ftp logins or overly-verbose responses")
-    #clear
-    print("clear\nclears the terminal")
+    print("\nsolve\nrequires analyze to be run first, recommends an attack vector by checking service versions for CVEs, and other misconfigurations like anonymous ftp logins or overly-verbose responses")
+    #clear                                                                             print("\nclear\nclears the terminal")
     #note
-    print("note\nusage: note [add,rm,edit, list] <filename>\nlet's the user quickly add a note located in /home/documents/cpanicNotes")
+    print("\nnote\nusage: note [add,rm,edit, list] <filename>\nlets the user quickly add a note located in /home/documents/cpanicNotes")
     #save
-    print("save current session data like nmap scans, analyze outputs, and target info to a text document that can be used to resume the engagement")
+    print("\nsave\n saves current session data like nmap scans, analyze outputs, and target info to a text document that can be used to resume the engagement\n")
 
 def nmap():
 
     print("starting nmap")
 
-    target = "127.0.0.1"
-    port = 631
+    target = ""
+    port = ""
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     result = sock.connect_ex((target, port))
 
@@ -44,26 +41,27 @@ def nmap():
     else:
         print("Port {} is closed".format(port))
 
+def probe():
+
 #"the shell"
 #Greet the user with a command-line like interface including their username
 
-sysUsername = os.environ.get("USER")
+        envUSER = os.environ.get("USER")                                                   envPWD = os.environ.get("PWD")
 while True:
-    userBlob = input((sysUsername)+">")
-    if userBlob == "exit" or userBlob == "quit":
+    unparsedInput = input(envUSER+"@"+socket.gethostname()+"$"+envPWD+">")
+    if unparsedInput == "exit" or unparsedInput == "quit":
         exit()
-#clean up extra whitespace inbetween words in the user's input, then create a list using the first index as a command and the rest as args
-    clean = userBlob.split()
-    print("is this a list " + str(clean))
+    #clean up extra whitespace inbetween words in the user's input, then create a list using the first word as a command and the rest as args
+    unparsedInputClean = unparsedInput.split()
 
-#take the users input, check if the first word in their input is an existing command, then forward them to that function
+    #take the users input, check if the first word in their input is an existing command, then forward them to that function                                              print("debug: current command is " + unparsedInputClean[0])
     commandsList = {"nmap": nmap, "help": help}  # list of functions in this script
 
 
     for command in commandsList:
-        print(clean[0])
-        if clean[0] == command:
-            print("yay")
-            commandsList[command]()
+        if unparsedInputClean[0] == command:
+            commandsList[command]() #when a matching command is found, treat commandList[command] as the name of a function.
+            break
         else:
-            print("nouu")
+            if command == unparsedInputClean[-1]:
+                print("command " + unparsedInputClean[0] + " not found.")
