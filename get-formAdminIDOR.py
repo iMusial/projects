@@ -2,7 +2,7 @@ import requests
 print("Author: iMusial")
 
 target = str(input("Host/victim IP address: "))
-phpCookie = input("PHP Cookie: ")
+phpCookie = input("PHP Cookie: ") #this must be the full value of Cookie, for example PHPSESSID=1kl98gqmhvm0jd75hijqnfjrq6
 requestAmnt = int(input("Request amount: ")) #How many different pages to request, for example, entering 3 will query URLs with id paramaters from id=1 to id=3
 
 
