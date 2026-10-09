@@ -28,7 +28,7 @@ def help():
 
 def nmap():
 
-    print("starting nmap")
+    print("starting port scanner")
 
     target = ""
     port = ""
