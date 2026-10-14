@@ -1,8 +1,8 @@
 # Projects
 Personal projects of mine. All projects are in very early development.
 
-## senf.py
-Senf Is Not a Fuzzer is a passive reconnaissance tool for enumerating subdomains using services like crt.sh and dnsDumpster. API keys will be required.
+## sinf.py
+Sinf Is Not a Fuzzer is a passive reconnaissance tool for enumerating subdomains using services like crt.sh and dnsDumpster. API keys will be required.
 
 ## cpanic.py
 _cpanic_ is an offensive security penetration testing tool, with emphasis on passive reconnaissance. Some API keys will be needed to access some functionality for services like Shodan and Hunter. The tool is meant to be used in conjunction with a custom Debian-based Linux project that I am developing called "HacknetOS", inspired by the game Hacknet. 
